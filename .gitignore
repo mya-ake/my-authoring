@@ -1,0 +1,28 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# nyc
+coverage
+.nyc_output
+
+# Serverless directories
+.serverless
+
+# jsDoc generate
+.docs
+
+# configs
+configs/api.json
+configs/constants.json
+
+# pwa
+sw.*

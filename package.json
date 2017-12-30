@@ -1,0 +1,45 @@
+{
+  "name": "my-authoring",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint",
+    "sls": "sls",
+    "sls:deploy": "sls deploy",
+    "deploy": "cross-env ENDPOINT_ENV=cf run-s build sls:deploy",
+    "deploy:api_gw": "cross-env ENDPOINT_ENV=api_gw run-s build sls:deploy",
+    "delete": "sls remove"
+  },
+  "config": {
+    "nuxt": {
+      "port": "13100"
+    }
+  },
+  "dependencies": {
+    "aws-serverless-express": "^3.0.2",
+    "express": "^4.16.2",
+    "normalize.css": "^7.0.0",
+    "nuxt": "^1.0.0-rc11"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.1.2",
+    "cross-env": "^5.1.3",
+    "eslint": "^4.14.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^4.0.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.2",
+    "sass-loader": "^6.0.6",
+    "sass-resources-loader": "^1.3.1",
+    "serverless": "^1.25.0"
+  }
+}

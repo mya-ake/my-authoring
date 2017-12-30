@@ -1,0 +1,83 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  height: 100%;
+  background-color: $cbg-default;
+  color: $ct-default;
+  font-family: -apple-system, BlinkMacSystemFont, ".SFNSDisplay-Regular", helvetica, "游ゴシック", "Yu Gothic", "游ゴシック体", "YuGothic", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "Meiryo UI", "メイリオ", Meiryo, sans-serif;
+  font-size: 1.4rem;
+  line-height: 1;
+  backface-visibility: hidden;
+  position: relative;
+  font-feature-settings: "pkna" 1;
+  letter-spacing: .04em;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: unset;
+  pointer-events: none;
+
+  padding-top: constant(safe-area-inset-top);
+  padding-right: constant(safe-area-inset-right);
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-left: constant(safe-area-inset-left);
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+
+  @include media(small) {
+    font-size: 1.6rem;
+    pointer-events: auto;
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+main {
+  overflow: hidden;
+}
+
+input, textarea, a, button, select {
+  pointer-events: auto;
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  user-select: none;
+}
+
+a {
+  color: $ct-A;
+}
+
+em {
+  font-style: normal;
+}
+
+#__nuxt {
+  height: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+}

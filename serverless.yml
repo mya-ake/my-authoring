@@ -1,0 +1,60 @@
+service:
+  name: ${self:custom.NAME}
+
+frameworkVersion: ">=1.25.0"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: ap-northeast-1
+  stage: ${self:custom.STAGE}
+  profile: my
+
+custom:
+  NAME: my-authoring
+  STAGE: ${file(./configs/env.js):exporter.STAGE}
+  BASE_URL: ${file(./configs/env.js):exporter.BASE_URL}
+  ENDPOINT_ENV: ${file(./configs/env.js):exporter.ENDPOINT_ENV}
+
+package:
+  excludeDevDependencies: true
+  exclude:
+    - .**
+    - .**/*
+    - app/**
+    - LICENSE
+    - README.md
+    - package.json
+    - yarn.lock
+    - node_modules/babel**/**
+    - node_modules/caniuse-db/**
+    - node_modules/caniuse-lite/**
+    - node_modules/prettier/**
+    - node_modules/yargs/**
+    - node_modules/postcss**/**
+    - node_modules/cssnano/**
+    - node_modules/xxhashjs/**
+    - node_modules/jschardet/**
+    - node_modules/**/*.md
+    - node_modules/**/bin/**
+  include:
+    - server/**
+    - configs/**
+    - nuxt.config.js
+
+
+functions:
+  handler:
+    handler: server/handler.handler
+    timeout: 30
+    memorySize: 128
+    environment:
+      BASE_URL: ${self:custom.BASE_URL}
+      ENDPOINT_ENV: ${self:custom.ENDPOINT_ENV}
+    events:
+      - http:
+          path: '/'
+          method: get
+      - http:
+          path: '{proxy+}'
+          method: get
