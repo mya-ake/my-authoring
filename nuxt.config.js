@@ -18,14 +18,14 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Nuxt.js Boilerplate',
+    title: 'My authoring',
     htmlAttrs: {
       lang: 'ja',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js Boilerplate' },
+      { hid: 'description', name: 'description', content: '自分の記事を書くモチベーションを上げるためのサービス（予定）' },
     ],
     // link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
