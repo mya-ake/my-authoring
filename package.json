@@ -23,7 +23,9 @@
     "aws-serverless-express": "^3.0.2",
     "express": "^4.16.2",
     "normalize.css": "^7.0.0",
-    "nuxt": "^1.0.0-rc11"
+    "nuxt": "^1.0.0-rc11",
+    "textlint": "^10.1.0",
+    "textlint-rule-preset-japanese": "^3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.1.2",

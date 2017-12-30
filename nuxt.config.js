@@ -52,6 +52,13 @@ module.exports = {
         })
       }
 
+      if (ctx.isClient) {
+        config.node = {
+          fs: 'empty',
+          module: 'empty',
+        }
+      }
+
       config.module.rules
         .find((rule) => rule.loader === 'vue-loader')
         .options.loaders.scss.push({
