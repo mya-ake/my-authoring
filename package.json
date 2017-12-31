@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "nuxt:start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
@@ -12,7 +12,9 @@
     "sls:deploy": "sls deploy",
     "deploy": "cross-env ENDPOINT_ENV=cf run-s build sls:deploy",
     "deploy:api_gw": "cross-env ENDPOINT_ENV=api_gw run-s build sls:deploy",
-    "delete": "sls remove"
+    "delete": "sls remove",
+    "start": "cross-env ENDPOINT_ENV=local run-s build main",
+    "main": "electron main.js"
   },
   "config": {
     "nuxt": {
@@ -21,6 +23,7 @@
   },
   "dependencies": {
     "aws-serverless-express": "^3.0.2",
+    "electron": "^1.7.10",
     "express": "^4.16.2",
     "normalize.css": "^7.0.0",
     "nuxt": "^1.0.0-rc11",

@@ -77,4 +77,8 @@ module.exports = {
     'normalize.css/normalize.css',
     '~assets/scss/styles.scss',
   ],
+
+  electron: {
+    width: 1024,
+  },
 }

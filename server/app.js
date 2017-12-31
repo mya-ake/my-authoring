@@ -39,4 +39,8 @@ app.use((req, res, next) => {
   nuxt.render(req, res, next)
 })
 
-module.exports.app = app
+module.exports = {
+  app,
+  server: app,
+  config,
+}
