@@ -30,17 +30,7 @@
 </template>
 
 <script>
-import { TextLintCore } from 'textlint/lib/textlint/src/textlint-core'
-
-const textlint = new TextLintCore()
-textlint.setupRules([], {
-  lineNumbers: true,
-  lineWrapping: true,
-  mode: 'gfm',
-  lint: {
-    async: true,
-  },
-})
+import ipcPromise from 'ipc-promise'
 
 export default {
   data () {
@@ -51,9 +41,8 @@ export default {
 
   watch: {
     async text (value) {
-      console.log(value)
-      const results = await textlint.lintMarkdown(value)
-      console.log(results)
+      const result = await ipcPromise.send('textlint', value)
+      console.log(result)
     },
   },
 }
@@ -61,10 +50,10 @@ export default {
 
 <style lang="scss" scoped>
 
-.header {
-  height: 4rem;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-}
+// .header {
+//   height: 4rem;
+//   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+// }
 
 .edit-area {
   padding: 1em 0;

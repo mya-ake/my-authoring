@@ -25,6 +25,7 @@
     "aws-serverless-express": "^3.0.2",
     "electron": "^1.7.10",
     "express": "^4.16.2",
+    "ipc-promise": "^0.1.4",
     "normalize.css": "^7.0.0",
     "nuxt": "^1.0.0-rc11",
     "textlint": "^10.1.0",

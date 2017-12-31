@@ -5,6 +5,7 @@ const { server, config } = require('./server/app')
 
 // Listen the server
 server.listen(process.env.npm_package_config_nuxt_port, '0.0.0.0')
+// server.listen()
 const _NUXT_URL_ = `http://localhost:${process.env.npm_package_config_nuxt_port}`
 // eslint-disable-next-line
 console.log(`Nuxt working on ${_NUXT_URL_}`)
@@ -14,10 +15,11 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const http = require('http')
+const { registerIPC } = require('./server/textlint')
 
 let win = null
 
-const POLL_INTERVAL = 300
+const POLL_INTERVAL = 3000
 const pollServer = () => {
   http.get(_NUXT_URL_, (res) => {
     const SERVER_DOWN = res.statusCode !== 200
@@ -46,6 +48,7 @@ const newWin = () => {
   pollServer()
 }
 
+registerIPC()
 app.on('ready', newWin)
 app.on('window-all-closed', () => app.quit())
 app.on('activate', () => win === null && newWin())

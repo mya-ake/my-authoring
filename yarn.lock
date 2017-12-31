@@ -3693,6 +3693,10 @@ ipaddr.js@1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.5.2.tgz#d4b505bde9946987ccf0fc58d9010ff9607e3fa0"
 
+ipc-promise@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/ipc-promise/-/ipc-promise-0.1.4.tgz#5274236976942c22b7945858ae7c0b7fcf3fc559"
+
 is-absolute-url@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-absolute-url/-/is-absolute-url-2.1.0.tgz#50530dfb84fcc9aa7dbe7852e83a37b93b9f2aa6"
