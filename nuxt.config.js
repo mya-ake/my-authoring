@@ -54,12 +54,6 @@ module.exports = {
 
       if (ctx.isClient) {
         config.target = 'electron-renderer'
-        // config.node = {
-        //   __dirname: false,
-        //   __filename: false,
-        //   fs: 'empty',
-        //   module: 'empty',
-        // }
       }
 
       config.module.rules

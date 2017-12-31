@@ -1,0 +1,20 @@
+[
+  {
+    "column": 6,
+    "index": 11,
+    "line": 3,
+    "message": "一つの文で\"、\"を3つ以上使用しています",
+    "ruleId": "max-ten",
+    "severity": 2,
+    "type": "lint"
+  },
+  {
+    "column": 7,
+    "index": 12,
+    "line": 3,
+    "message": "本文: \"である\"調 と \"ですます\"調 が混在\n=> \"である。\" がである調\nTotal:\nである  : 1\nですます: 1\n",
+    "ruleId": "no-mix-dearu-desumasu",
+    "severity": 2,
+    "type": "lint"
+  }
+]
