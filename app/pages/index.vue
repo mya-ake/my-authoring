@@ -31,7 +31,6 @@
 
 <script>
 import { TextLintCore } from 'textlint/lib/textlint/src/textlint-core'
-// import { TextLintCore } from 'textlint'
 
 const textlint = new TextLintCore()
 textlint.setupRules([], {

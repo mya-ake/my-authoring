@@ -54,6 +54,8 @@ module.exports = {
 
       if (ctx.isClient) {
         config.node = {
+          __dirname: false,
+          __filename: false,
           fs: 'empty',
           module: 'empty',
         }
