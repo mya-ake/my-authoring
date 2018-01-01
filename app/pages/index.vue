@@ -68,13 +68,17 @@ export default {
       text: '',
       messages: [],
       // messages,
+      processId: null,
     }
   },
 
   watch: {
-    async text (value) {
-      const result = await ipcPromise.send('textlint', value)
-      this.messages = result.messages
+    text (value) {
+      clearTimeout(this.processId)
+      this.processId = setTimeout(async () => {
+        const result = await ipcPromise.send('textlint', value)
+        this.messages = result.messages
+      }, 200)
     },
   },
 
