@@ -59,17 +59,27 @@
 
 <script>
 import ipcPromise from 'ipc-promise'
-
-// import messages from '~/mocks/messages.json'
+import { remote } from 'electron'
 
 export default {
   data () {
     return {
       text: '',
       messages: [],
-      // messages,
       processId: null,
+      fileName: null,
     }
+  },
+
+  mounted () {
+    remote.dialog.showOpenDialog(null, {
+      properties: ['openFile'],
+      filters: [
+        {name: 'Markdown', extensions: ['md']},
+      ],
+    },
+    this.openFileCallback
+    )
   },
 
   watch: {
@@ -98,6 +108,16 @@ export default {
         .some((message) => {
           return message.line === number
         })
+    },
+
+    async openFileCallback (fileNames) {
+      const fileName = fileNames[0]
+      if (typeof fileName !== 'string' || fileName.length === 0) {
+        return
+      }
+      const fileData = await ipcPromise.send('file:open', fileName)
+      this.text = fileData
+      this.fileName = fileName
     },
   },
 }

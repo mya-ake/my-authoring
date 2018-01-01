@@ -16,6 +16,7 @@ const path = require('path')
 const url = require('url')
 const http = require('http')
 const { registerTextLintApi } = require('./server/textlintApi')
+const { registerFileApi } = require('./server/fileApi')
 
 let win = null
 
@@ -49,6 +50,7 @@ const newWin = () => {
 }
 
 registerTextLintApi()
+registerFileApi()
 app.on('ready', newWin)
 app.on('window-all-closed', () => app.quit())
 app.on('activate', () => win === null && newWin())
