@@ -27,6 +27,7 @@
             name="text"
             id="text"
             v-bind:rows="textareaRow"
+            wrap="off"
             class="textarea"
           ></textarea>
         </div>
@@ -120,6 +121,7 @@ $line-height: 1.6;
   outline: none;
   font-size: 2rem;
   line-height: $line-height;
+  resize: none;
 }
 
 .lines {
