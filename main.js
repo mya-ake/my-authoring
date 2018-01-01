@@ -15,7 +15,7 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const http = require('http')
-const { registerIPC } = require('./server/textlint')
+const { registerTextLintApi } = require('./server/textlintApi')
 
 let win = null
 
@@ -48,7 +48,7 @@ const newWin = () => {
   pollServer()
 }
 
-registerIPC()
+registerTextLintApi()
 app.on('ready', newWin)
 app.on('window-all-closed', () => app.quit())
 app.on('activate', () => win === null && newWin())

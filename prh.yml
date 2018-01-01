@@ -1,0 +1,8 @@
+version: 1
+rules:
+  - expected: Vue.js
+    patterns:
+      - /[vV]ue(?!(x|-|.js))/
+  - expected: web
+    patterns:
+      - /[wW][eE][bB]/
