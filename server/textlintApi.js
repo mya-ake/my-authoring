@@ -27,6 +27,7 @@ textlint.setupRules(
           path.resolve(__dirname, '..', 'prh.yml'),
         ],
       },
+      '3.1.1.全角文字と半角文字の間': false,
     }
   )
 )
