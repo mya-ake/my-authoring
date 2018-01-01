@@ -24,6 +24,7 @@
         <div>
           <textarea 
             v-model="text"
+            ref="text"
             name="text"
             id="text"
             v-bind:rows="textareaRow"
@@ -47,7 +48,7 @@
           >
             <span class="message__meta">Line: {{message.line}}</span>
             <span class="message__meta">Column: {{message.column}}</span>
-            <span class="message__meta">Index: {{message.index}}</span>
+            <span class="message__meta">Index: <a href="" v-on:click.prevent="handleClickIndex(message.index)">{{message.index}}</a></span>
             <span class="message__rule">{{message.ruleId}}</span>
             <span class="message__body">{{message.message}}</span>
           </li>
@@ -149,6 +150,14 @@ export default {
       const fileData = await ipcPromise.send('file:open', fileName)
       this.text = fileData
       this.fileName = fileName
+    },
+
+    handleClickIndex (index) {
+      this.$refs.text.focus()
+      this.$refs.text.setSelectionRange(index, index)
+      // このようにしないとスクロールしてくれない模様（問題があれば scrollTop などを使用するように
+      this.$refs.text.blur()
+      this.$refs.text.focus()
     },
   },
 }
