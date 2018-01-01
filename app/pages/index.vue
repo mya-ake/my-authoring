@@ -13,6 +13,7 @@
             v-for="(number, index) in line"
             v-bind:key="`line-${index}`"
             class="line"
+            v-bind:data-has-error="hasErrorLine(number)"
           >{{number}}</li>
         </ol>
       </div>
@@ -65,13 +66,13 @@ export default {
     return {
       text: '',
       messages: [],
+      // messages,
     }
   },
 
   watch: {
     async text (value) {
       const result = await ipcPromise.send('textlint', value)
-      // console.log(result)
       this.messages = result.messages
     },
   },
@@ -83,6 +84,15 @@ export default {
 
     textareaRow () {
       return Math.max(this.line, 30)
+    },
+  },
+
+  methods: {
+    hasErrorLine (number) {
+      return this.messages
+        .some((message) => {
+          return message.line === number
+        })
     },
   },
 }
@@ -106,7 +116,7 @@ $line-height: 1.6;
   width: 100%;
   border: none;
   padding: 0 8px;
-  background-color: $cbg-default;
+  background-color: transparent;
   outline: none;
   font-size: 2rem;
   line-height: $line-height;
@@ -119,14 +129,34 @@ $line-height: 1.6;
 }
 
 .line {
+  position: relative;
   height: 2rem * $line-height;
-  padding-top: .8rem;
+  padding-top: 1rem;
   text-align: right;
   font-size: 1.2rem;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    opacity: .6;
+    z-index: -1;
+    // transition: background-color .1s ease-in-out;
+  }
+
+  &[data-has-error] {
+    &::after {
+      content: '';
+      background-color: $cb-error;
+    }
+  }
 }
 
 .linter-result {
   position: relative;
+  background-color: $cbg-default;
 }
 
 .messages {
@@ -134,9 +164,9 @@ $line-height: 1.6;
   top: 16px;
   z-index: 2;
   width: 100%;
+  max-width: 320px;
   height: 100vh;
   margin: 0;
-  border-top: solid 1px $cb-default;
   padding: 0;
   color: $ct-lint-message;
   overflow-y: scroll;
@@ -149,6 +179,9 @@ $line-height: 1.6;
   grid-column-gap: 16px;
   border-bottom: solid 1px $cb-default;
   padding: 16px 8px;
+  &:first-child {
+    border-top: solid 1px $cb-default;
+  }
 }
 
 .message__meta {
@@ -160,6 +193,7 @@ $line-height: 1.6;
   grid-row: 2;
   grid-column: 1 / span 3;
   font-size: 1.2rem;
+  line-height: 1.2;
 }
 
 </style>

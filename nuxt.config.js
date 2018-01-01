@@ -52,7 +52,7 @@ module.exports = {
         })
       }
 
-      if (ctx.isClient) {
+      if (ctx.dev === false && ctx.isClient) {
         config.target = 'electron-renderer'
       }
 
