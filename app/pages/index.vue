@@ -48,6 +48,7 @@
             <span class="message__meta">Line: {{message.line}}</span>
             <span class="message__meta">Column: {{message.column}}</span>
             <span class="message__meta">Index: {{message.index}}</span>
+            <span class="message__rule">{{message.ruleId}}</span>
             <span class="message__body">{{message.message}}</span>
           </li>
         </ul>
@@ -245,8 +246,14 @@ $line-height: 1.6;
   font-size: 1rem;
 }
 
-.message__body {
+.message__rule {
   grid-row: 2;
+  grid-column: 1 / span 3;
+  font-size: 1rem;
+}
+
+.message__body {
+  grid-row: 3;
   grid-column: 1 / span 3;
   font-size: 1.2rem;
   line-height: 1.2;
