@@ -33,9 +33,6 @@ const nuxt = new Nuxt(config)
 
 app.use((req, res, next) => {
   req.url = buildPath(req.url)
-  // eslint-disable-next-line
-  console.log('Request URL: ', req.url)
-
   nuxt.render(req, res, next)
 })
 
