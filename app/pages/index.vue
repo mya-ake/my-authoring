@@ -66,7 +66,10 @@ export default {
     return {
       text: '',
       messages: [],
-      processId: null,
+      processIds: {
+        lint: null,
+        save: null,
+      },
       fileName: null,
     }
   },
@@ -84,11 +87,8 @@ export default {
 
   watch: {
     text (value) {
-      clearTimeout(this.processId)
-      this.processId = setTimeout(async () => {
-        const result = await ipcPromise.send('textlint', value)
-        this.messages = result.messages
-      }, 200)
+      this.lint(value)
+      this.save(value)
     },
   },
 
@@ -110,9 +110,39 @@ export default {
         })
     },
 
+    lint (value) {
+      clearTimeout(this.processIds.lint)
+      this.processIds.lint = setTimeout(async () => {
+        const result = await ipcPromise.send('textlint', value)
+        this.messages = result.messages
+      }, 100)
+    },
+
+    save (value) {
+      if (this.fileName === null) {
+        return
+      }
+
+      clearTimeout(this.processIds.save)
+      this.processIds.save = setTimeout(async () => {
+        const result = await ipcPromise.send('file:save', {
+          fileName: this.fileName,
+          data: value,
+        })
+        if (result === false) {
+          // failed
+        }
+      }, 2000)
+    },
+
     async openFileCallback (fileNames) {
+      if (typeof fileNames === 'undefined') {
+        this.fileName = null
+        return
+      }
       const fileName = fileNames[0]
       if (typeof fileName !== 'string' || fileName.length === 0) {
+        this.fileName = null
         return
       }
       const fileData = await ipcPromise.send('file:open', fileName)
