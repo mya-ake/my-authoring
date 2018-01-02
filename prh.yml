@@ -6,3 +6,6 @@ rules:
   - expected: web
     patterns:
       - /[wW][eE][bB]/
+  - expected: サーバー
+    patterns:
+      - /サーバ(?!ー)/
