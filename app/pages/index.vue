@@ -28,6 +28,7 @@
             name="text"
             id="text"
             v-bind:rows="textareaRow"
+            v-on:keydown.prevent.tab="handleKeyDownTab"
             wrap="off"
             class="textarea"
           ></textarea>
@@ -158,6 +159,22 @@ export default {
       // このようにしないとスクロールしてくれない模様（問題があれば scrollTop などを使用するように
       this.$refs.text.blur()
       this.$refs.text.focus()
+    },
+
+    handleKeyDownTab () {
+      this.appendString('  ')
+    },
+
+    appendString (str) {
+      const selectionStart = this.$refs.text.selectionStart
+      const beforeString = this.text.substring(0, selectionStart)
+      const afterString = this.text.substring(selectionStart)
+      this.text = `${beforeString}${str}${afterString}`
+      const nextSelectionStart = selectionStart + str.length
+      this.$nextTick()
+        .then(() => {
+          this.$refs.text.setSelectionRange(nextSelectionStart, nextSelectionStart)
+        })
     },
   },
 }
