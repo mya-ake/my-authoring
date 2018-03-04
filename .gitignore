@@ -1,5 +1,6 @@
 # dependencies
 node_modules
+yarn-error.log
 
 # logs
 npm-debug.log
