@@ -22,7 +22,6 @@
     }
   },
   "dependencies": {
-    "aws-serverless-express": "^3.0.2",
     "electron": "^1.7.10",
     "express": "^4.16.2",
     "ipc-promise": "^0.1.4",
